@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>WorldFirst — Internal</title>
+<style>
+
+  :root{
+    --ink:#13171d; --ink2:#4a525c; --mut:#8b929c; --line:#e7e9ec;
+    --accent:#0c6e5d; --accent-soft:#e7f3f0;
+    --edit:#9a5b00; --edit-bg:#fdf6e8; --edit-line:#f0dcae;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#f4f5f6;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+  /* editor banner */
+  .editbar{background:var(--edit-bg);border-bottom:1px solid var(--edit-line);color:var(--edit);padding:13px 22px;font-size:12.5px;text-align:center}
+  .editbar b{font-weight:700}
+
+  .page{max-width:720px;margin:26px auto;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+
+  /* brand bar */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 34px;border-bottom:1px solid var(--line)}
+  .wordmark{font-weight:750;letter-spacing:-.02em;font-size:17px}
+  .wordmark span{color:var(--accent)}
+  .topbar .nav{font-size:12.5px;color:var(--mut)}
+
+  /* hero */
+  .hero{padding:54px 34px 46px;text-align:center}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:16px}
+  .hero h1{font-size:34px;line-height:1.15;letter-spacing:-.025em;font-weight:720;margin-bottom:16px}
+  .hero p{font-size:16px;color:var(--ink2);max-width:480px;margin:0 auto 26px}
+  .cta{display:inline-block;background:var(--accent);color:#fff;font-weight:600;font-size:14.5px;padding:13px 26px;border-radius:99px}
+
+  .sec{padding:38px 34px;border-top:1px solid var(--line)}
+  .sec h2{font-size:20px;letter-spacing:-.01em;margin-bottom:20px;font-weight:680}
+
+  .steps{display:grid;gap:16px}
+  .step{display:grid;grid-template-columns:34px 1fr;gap:16px;align-items:start}
+  .step .n{width:34px;height:34px;border-radius:99px;background:var(--accent-soft);color:var(--accent);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .step .st{font-size:15px;color:var(--ink2)}
+  .step .st b{color:var(--ink);font-weight:650}
+
+  .elig{background:#fafbfb;border:1px solid var(--line);border-radius:12px;padding:22px 24px;font-size:15px;color:var(--ink2)}
+  .elig b{color:var(--ink)}
+
+  .prize{display:flex;gap:18px;align-items:center}
+  .prize .big{font-size:46px;font-weight:740;letter-spacing:-.03em;line-height:1}
+  .prize .pt{font-size:14.5px;color:var(--ink2)}
+
+  .terms{font-size:12.5px;color:var(--mut);line-height:1.7}
+
+  /* placeholders + region tags */
+  .ph{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.9em;background:var(--edit-bg);color:var(--edit);border:1px solid var(--edit-line);border-radius:5px;padding:1px 6px;font-weight:600;white-space:nowrap}
+  .tag{display:inline-block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:99px;vertical-align:middle;margin-left:10px}
+  .tag.common{background:var(--accent-soft);color:var(--accent)}
+  .tag.regional{background:var(--edit-bg);color:var(--edit);border:1px solid var(--edit-line)}
+  .sechead{display:flex;align-items:center;flex-wrap:wrap}
+
+  footer{padding:26px 34px;border-top:1px solid var(--line);font-size:11.5px;color:var(--mut);text-align:center}
+
+
+#gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;z-index:9999;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',Inter,sans-serif}
+#gate-card{width:300px;text-align:center}
+#gate-card h2{font-size:15px;font-weight:600;margin-bottom:18px;color:#111418;letter-spacing:.02em}
+#gate-input{width:100%;padding:11px 14px;border:1px solid #d7dadf;border-radius:9px;font-size:14px;outline:none;text-align:center}
+#gate-input:focus{border-color:#111418}
+#gate-btn{width:100%;margin-top:10px;padding:11px;border:none;border-radius:9px;background:#111418;color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+#gate-err{margin-top:10px;font-size:12px;color:#b4541b;min-height:14px}
+#lockdev{position:fixed;bottom:14px;right:16px;font-size:11px;color:#9aa1aa;text-decoration:none;z-index:9998}
+#lockdev:hover{color:#111418}
+body.locked #lockdev{display:none}
+body.locked{overflow:hidden}
+body.locked #content{filter:blur(20px);pointer-events:none}
+
+</style>
+</head>
+<body class="locked">
+<div id="gate"><div id="gate-card">
+  <h2>WORLDFIRST · INTERNAL</h2>
+  <form id="gate-form" onsubmit="return gateSubmit(event)">
+    <input id="gate-input" type="password" placeholder="password" autocomplete="off" autofocus>
+    <button id="gate-btn" type="submit">Enter</button>
+  </form>
+  <div id="gate-err"></div>
+</div></div>
+<div id="content" hidden></div>
+<a id="lockdev" href="#" onclick="localStorage.removeItem('messi_pw');location.reload();return false;">lock device</a>
+<script type="application/json" id="payload">{"v": 1, "salt": "RydJpSBvREmY4QjTLlNWuA==", "iv": "yUHI/udlRkd/+9mN", "iterations": 100000, "ciphertext": "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"}</script>
+<script>
+function b64ToBytes(b64){const bin=atob(b64);const a=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return a;}
+async function deriveKey(pw,salt,iter){const enc=new TextEncoder();const bk=await crypto.subtle.importKey("raw",enc.encode(pw),"PBKDF2",false,["deriveKey"]);return crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:iter,hash:"SHA-256"},bk,{name:"AES-GCM",length:256},false,["decrypt"]);}
+async function decryptPayload(pw){const b=JSON.parse(document.getElementById('payload').textContent);const key=await deriveKey(pw,b64ToBytes(b.salt),b.iterations);const plain=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64ToBytes(b.iv)},key,b64ToBytes(b.ciphertext));return new TextDecoder().decode(plain);}
+function reveal(html){document.getElementById('content').innerHTML=html;document.getElementById('content').hidden=false;document.getElementById('gate').style.display='none';document.body.classList.remove('locked');try{initPage();}catch(e){}}
+async function gateSubmit(e){e.preventDefault();const inp=document.getElementById('gate-input');const err=document.getElementById('gate-err');err.textContent='';try{const h=await decryptPayload(inp.value);reveal(h);try{localStorage.setItem('messi_pw',inp.value);}catch(_){}}catch(ex){err.textContent='wrong password';inp.value='';inp.focus();}return false;}
+(async()=>{try{const c=localStorage.getItem('messi_pw');if(c){reveal(await decryptPayload(c));}}catch(_){try{localStorage.removeItem('messi_pw');}catch(__){}}})();
+function initPage(){
+/* no page js */
+}
+</script>
+</body>
+</html>
